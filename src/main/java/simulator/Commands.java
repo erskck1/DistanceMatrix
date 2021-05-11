@@ -1,4 +1,4 @@
-package util;
+package simulator;
 
 public enum Commands {
 

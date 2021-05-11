@@ -1,5 +1,7 @@
 package util;
 
+import simulator.Commands;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -53,7 +55,7 @@ public class CommandsUtil {
     }
 
     public static Map<String, String> getParametersAsMap(String[] args) {
-        Map<String, String> parametersMap = new HashMap<String, String>();
+        Map<String, String> parametersMap = new HashMap<>();
         List<String> parametersList = arrayToArrayList(args);
 
         parametersList.stream().filter(s -> s.matches(Commands.WORD_COUNT.getRegex())).forEach(s -> {

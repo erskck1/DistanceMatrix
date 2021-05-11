@@ -1,7 +1,7 @@
 package validator;
 
 import dictionary.Alphabet;
-import util.Commands;
+import simulator.Commands;
 import util.CommandsUtil;
 import util.Helper;
 

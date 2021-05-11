@@ -1,6 +1,6 @@
 package validator;
 
-import util.Commands;
+import simulator.Commands;
 
 import java.util.Arrays;
 import java.util.List;

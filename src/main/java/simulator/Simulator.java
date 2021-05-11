@@ -6,6 +6,9 @@ import dictionary.Word;
 import org.apache.commons.lang3.StringUtils;
 import util.Helper;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -36,20 +39,20 @@ public class Simulator {
         int maxWordCount = Helper.calculateNumberOfWordCombinationsBy(wordLength, letterCount); // max word combination of wordLength
         int maxWordCountWithDistance = Helper.calculateNumberOfWordCombinationsBy(wordLength, letterCount, distanceBetweenWords);  // max word combination of wordLength with at least distanceBetweenWords
         int stepSize = Helper.calculatStepSize(distanceBetweenWords, letterCount); // step size for generating unique words
-        int uniqueWordInBase10 = Helper.randomInt(maxWordCountWithDistance) * stepSize; // start index
+        int equivalentWordInBase10 = Helper.randomInt(maxWordCountWithDistance) * stepSize; // start index
 
         for (int i = 0; i < numberOfWords; i++) {
-            words.add(WordBuilder.generateBy(uniqueWordInBase10, wordLength));
-            uniqueWordInBase10 = (uniqueWordInBase10 + stepSize);    // next unique word
-            if (uniqueWordInBase10 > maxWordCount) {    // shift back the index
-                uniqueWordInBase10 = 0;
+            words.add(WordBuilder.generateBy(equivalentWordInBase10, wordLength));
+            equivalentWordInBase10 = (equivalentWordInBase10 + stepSize);    // next unique word
+            if (equivalentWordInBase10 > maxWordCount) {    // shift back the index
+                equivalentWordInBase10 = 0;
             }
         }
 
         return words;
     }
 
-    public void printDistanceMatrix(List<Word> words) {
+    public void writeDistanceMatrixIntoFile(List<Word> words) {
         StringBuilder header = new StringBuilder();
         StringBuilder rows = new StringBuilder();
         String delimiter = "\t";
@@ -57,27 +60,39 @@ public class Simulator {
         for (Word word1 : words) {
             StringJoiner distances = new StringJoiner(delimiter);
             for (Word word2 : words) {
-                int distance = Helper.calculateDistanceBetween(word1.toString(), word2.toString());
+                String distance = String.valueOf(Helper.calculateDistanceBetween(word1.toString(), word2.toString()));
                 if (word1 == word2) {
-                    distance = 0;
+                    distance = "-";
                 }
-                distances.add(StringUtils.center(String.valueOf(distance), words.get(0).length(), " ").replace("0", "-"));
+                distances.add(StringUtils.center(distance, words.get(0).length(), " "));
             }
-            distances.add("\n");
 
             header.append(word1.toString());
             header.append(delimiter);
 
             rows.append(word1.toString());
             rows.append(delimiter);
-            rows.append(distances);
+            rows.append(distances.toString().trim() + "\n");
         }
 
-        String headerEmptyString = StringUtils.leftPad("", words.get(0).length(), " ") + delimiter;
-        header.insert(0, headerEmptyString);
-        header.append("\n");
-        rows.insert(0, header);
-        System.out.println(rows);
+        String headerEmptyString = StringUtils.center("", words.get(0).length(), " ") + delimiter;
+        rows.insert(0, headerEmptyString + header.toString().trim() + "\n");
+        writeToFile(rows);
+
+    }
+
+    private void writeToFile(StringBuilder rows) {
+        try {
+            String fileName = "distance_matrix.tsv";
+            FileWriter fileWriter = new FileWriter(fileName);
+            File file = new File(fileName);
+            fileWriter.write(rows.toString());
+            fileWriter.close();
+            System.out.println("Distance matrix can be found under the following path : " + file.getAbsolutePath());
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
     }
 

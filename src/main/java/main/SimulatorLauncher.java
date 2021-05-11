@@ -2,10 +2,10 @@ package main;
 
 import dictionary.Word;
 import exception.CommandFailureException;
-import validator.NeedHelpValidator;
+import simulator.Commands;
 import simulator.Simulator;
-import util.Commands;
 import util.CommandsUtil;
+import validator.NeedHelpValidator;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class SimulatorLauncher {
 
         Simulator s = new Simulator();
         List<Word> words = s.createUniqueWordsBy(wordCount, wordLength, distance);  // generate words
-        s.printDistanceMatrix(words);                       // print distance matrix
+        s.writeDistanceMatrixIntoFile(words);                       // print distance matrix
     }
 }
 

@@ -1,6 +1,6 @@
 package validator;
 
-import util.Commands;
+import simulator.Commands;
 import util.CommandsUtil;
 
 public class NeedHelpValidator extends Validator {
