@@ -1,4 +1,4 @@
-package handler;
+package validator;
 
 import dictionary.Alphabet;
 import util.Commands;
@@ -7,11 +7,11 @@ import util.Helper;
 
 import java.util.Map;
 
-public class ParameterValidationHandler extends CommandHandler {
+public class ParameterValueValidator extends Validator {
 
     private boolean success;
 
-    public ParameterValidationHandler(String[] args) {
+    public ParameterValueValidator(String[] args) {
         super(args);
     }
 
@@ -24,22 +24,22 @@ public class ParameterValidationHandler extends CommandHandler {
     protected void execute() {
         Map<String, String> parametersAsMap = CommandsUtil.getParametersAsMap(args);
 
-        int w = Integer.valueOf(parametersAsMap.get(Commands.W.getParameter()));
-        int l = Integer.valueOf(parametersAsMap.get(Commands.L.getParameter()));
-        int d = Integer.valueOf(parametersAsMap.get(Commands.D.getParameter()));
+        int wordCount = Integer.valueOf(parametersAsMap.get(Commands.WORD_COUNT.getParameter()));
+        int wordLength = Integer.valueOf(parametersAsMap.get(Commands.WORD_LENGTH.getParameter()));
+        int distance = Integer.valueOf(parametersAsMap.get(Commands.DISTANCE.getParameter()));
 
-        if (w <= 0 || l <= 0 || d <= 0) {
+        if (wordCount <= 0 || wordLength <= 0 || distance <= 0) {
             success = false;
             return;
         }
 
-        if (d > l) {
+        if (distance > wordLength) {
             success = false;
             return;
         }
 
-        int numberOfWordsWithDistance = Helper.calculateNumberOfWordCombinationsBy(l, Alphabet.count(), d);
-        if (w > numberOfWordsWithDistance) {
+        int numberOfWordsWithDistance = Helper.calculateNumberOfWordCombinationsBy(wordLength, Alphabet.count(), distance);
+        if (wordCount > numberOfWordsWithDistance) {
             success = false;
             return;
         }
@@ -53,7 +53,7 @@ public class ParameterValidationHandler extends CommandHandler {
     }
 
     @Override
-    protected CommandHandler getNext() {
+    protected Validator getNext() {
         return null;
     }
 }

@@ -1,14 +1,14 @@
-package handler;
+package validator;
 
 import exception.CommandFailureException;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public abstract class CommandHandler {
+public abstract class Validator {
     protected String[] args;
 
-    public CommandHandler(String[] args) {
+    public Validator(String[] args) {
         this.args = args;
     }
 
@@ -36,6 +36,6 @@ public abstract class CommandHandler {
 
     protected abstract void printError();
 
-    protected abstract CommandHandler getNext();
+    protected abstract Validator getNext();
 
 }

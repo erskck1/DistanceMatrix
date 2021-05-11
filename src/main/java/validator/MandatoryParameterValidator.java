@@ -1,4 +1,4 @@
-package handler;
+package validator;
 
 import util.Commands;
 
@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CommandRuleHandler extends CommandHandler {
+public class MandatoryParameterValidator extends Validator {
 
     private boolean success;
 
-    public CommandRuleHandler(String[] args) {
+    public MandatoryParameterValidator(String[] args) {
         super(args);
     }
 
@@ -25,9 +25,9 @@ public class CommandRuleHandler extends CommandHandler {
 
         String parameters = commands.stream().collect(Collectors.joining(" "));
 
-        boolean isWordCountExist = parameters.matches(Commands.W.getRegexWithParameter());
-        boolean isWordLengthExist = parameters.matches(Commands.L.getRegexWithParameter());
-        boolean isDistanceExist = parameters.matches(Commands.D.getRegexWithParameter());
+        boolean isWordCountExist = parameters.matches(Commands.WORD_COUNT.getRegexWithParameter());
+        boolean isWordLengthExist = parameters.matches(Commands.WORD_LENGTH.getRegexWithParameter());
+        boolean isDistanceExist = parameters.matches(Commands.DISTANCE.getRegexWithParameter());
 
         if (!isWordCountExist || !isWordLengthExist || !isDistanceExist) {
             success = false;
@@ -43,8 +43,8 @@ public class CommandRuleHandler extends CommandHandler {
     }
 
     @Override
-    protected CommandHandler getNext() {
-        return new ParameterValidationHandler(args);
+    protected Validator getNext() {
+        return new ParameterValueValidator(args);
     }
 
 }

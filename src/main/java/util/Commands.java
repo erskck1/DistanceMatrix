@@ -3,9 +3,9 @@ package util;
 public enum Commands {
 
     HELP("-h", "-\\h", "", "This help menu"),
-    W("-w", "(?i)-w", ".*(?i)-w( +)(\\d+).*", "word count (mandatory)"),
-    L("-l", "(?i)-l", ".*(?i)-l( +)(\\d+).*", "word length (mandatory)"),
-    D("-d", "(?i)-d", ".*(?i)-d( +)(\\d+).*", "min distance between word (mandatory)");
+    WORD_COUNT("-w", "(?i)-w", ".*(?i)-w( +)(\\d+).*", "word count (mandatory)"),
+    WORD_LENGTH("-l", "(?i)-l", ".*(?i)-l( +)(\\d+).*", "word length (mandatory)"),
+    DISTANCE("-d", "(?i)-d", ".*(?i)-d( +)(\\d+).*", "min distance between word (mandatory)");
 
     private String parameter;
     private String regex;

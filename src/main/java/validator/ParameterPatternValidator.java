@@ -1,15 +1,15 @@
-package handler;
+package validator;
 
 import util.CommandsUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WrongCommandHandler extends CommandHandler {
+public class ParameterPatternValidator extends Validator {
 
     private List<String> wrongCommands;
 
-    public WrongCommandHandler(String[] args) {
+    public ParameterPatternValidator(String[] args) {
         super(args);
     }
 
@@ -30,8 +30,8 @@ public class WrongCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected CommandHandler getNext() {
-        return new DoubleCommandHandler(args);
+    protected Validator getNext() {
+        return new DuplicateParameterValidator(args);
     }
 
 }

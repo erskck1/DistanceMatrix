@@ -31,9 +31,9 @@ public class CommandsUtil {
 
     public static String getAllRegexWithOr() {
         StringJoiner joiner = new StringJoiner("|");
-        joiner.add(Commands.W.getRegex());
-        joiner.add(Commands.L.getRegex());
-        joiner.add(Commands.D.getRegex());
+        joiner.add(Commands.WORD_COUNT.getRegex());
+        joiner.add(Commands.WORD_LENGTH.getRegex());
+        joiner.add(Commands.DISTANCE.getRegex());
         return String.format("(%s)", joiner.toString());
     }
 
@@ -56,19 +56,19 @@ public class CommandsUtil {
         Map<String, String> parametersMap = new HashMap<String, String>();
         List<String> parametersList = arrayToArrayList(args);
 
-        parametersList.stream().filter(s -> s.matches(Commands.W.getRegex())).forEach(s -> {
+        parametersList.stream().filter(s -> s.matches(Commands.WORD_COUNT.getRegex())).forEach(s -> {
             int index = parametersList.indexOf(s);
-            parametersMap.put(Commands.W.getParameter(), parametersList.get(index + 1));
+            parametersMap.put(Commands.WORD_COUNT.getParameter(), parametersList.get(index + 1));
         });
 
-        parametersList.stream().filter(s -> s.matches(Commands.L.getRegex())).forEach(s -> {
+        parametersList.stream().filter(s -> s.matches(Commands.WORD_LENGTH.getRegex())).forEach(s -> {
             int index = parametersList.indexOf(s);
-            parametersMap.put(Commands.L.getParameter(), parametersList.get(index + 1));
+            parametersMap.put(Commands.WORD_LENGTH.getParameter(), parametersList.get(index + 1));
         });
 
-        parametersList.stream().filter(s -> s.matches(Commands.D.getRegex())).forEach(s -> {
+        parametersList.stream().filter(s -> s.matches(Commands.DISTANCE.getRegex())).forEach(s -> {
             int index = parametersList.indexOf(s);
-            parametersMap.put(Commands.D.getParameter(), parametersList.get(index + 1));
+            parametersMap.put(Commands.DISTANCE.getParameter(), parametersList.get(index + 1));
         });
 
         return parametersMap;

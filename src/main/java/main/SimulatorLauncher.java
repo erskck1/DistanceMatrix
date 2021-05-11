@@ -2,7 +2,7 @@ package main;
 
 import dictionary.Word;
 import exception.CommandFailureException;
-import handler.HelperCommandHandler;
+import validator.NeedHelpValidator;
 import simulator.Simulator;
 import util.Commands;
 import util.CommandsUtil;
@@ -14,21 +14,22 @@ public class SimulatorLauncher {
 
     public static void main(String[] args) {
 
-        // check if the commands are correct with Chain of Responsibility design pattern
+        // Check if the parameters are correct by using the Chain of Responsibility design pattern
         try {
-            new HelperCommandHandler(args).startChain();
+            new NeedHelpValidator(args).startChain();
         } catch (CommandFailureException ce) {
             return;
         }
 
+        // parameters are validated, now we can use them
         Map<String, String> parametersAsMap = CommandsUtil.getParametersAsMap(args);
 
-        int w = Integer.valueOf(parametersAsMap.get(Commands.W.getParameter()));
-        int l = Integer.valueOf(parametersAsMap.get(Commands.L.getParameter()));
-        int d = Integer.valueOf(parametersAsMap.get(Commands.D.getParameter()));
+        int wordCount = Integer.valueOf(parametersAsMap.get(Commands.WORD_COUNT.getParameter()));
+        int wordLength = Integer.valueOf(parametersAsMap.get(Commands.WORD_LENGTH.getParameter()));
+        int distance = Integer.valueOf(parametersAsMap.get(Commands.DISTANCE.getParameter()));
 
         Simulator s = new Simulator();
-        List<Word> words = s.createUniqueWordsBy(w, l, d);  // generate words
+        List<Word> words = s.createUniqueWordsBy(wordCount, wordLength, distance);  // generate words
         s.printDistanceMatrix(words);                       // print distance matrix
     }
 }

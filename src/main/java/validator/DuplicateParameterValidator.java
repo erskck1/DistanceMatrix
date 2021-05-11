@@ -1,15 +1,15 @@
-package handler;
+package validator;
 
 import util.CommandsUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DoubleCommandHandler extends CommandHandler {
+public class DuplicateParameterValidator extends Validator {
 
     private List<String> doubleCommands;
 
-    public DoubleCommandHandler(String[] args) {
+    public DuplicateParameterValidator(String[] args) {
         super(args);
     }
 
@@ -31,8 +31,8 @@ public class DoubleCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected CommandHandler getNext() {
-        return new CommandRuleHandler(args);
+    protected Validator getNext() {
+        return new MandatoryParameterValidator(args);
     }
 
 }
