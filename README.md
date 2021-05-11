@@ -4,54 +4,43 @@ Java Version : 1.8
 
 java -jar programming_exercise.jar -h
 
-Usage of the program
--w     		   : word count (mandatory, must be positive)
--l    		   : word length (mandatory, must be positive)
--d           : min distance between word (mandatory, must be positive and smaller than word length)
--h           : This help menu
+Usage of the program<br/>
+-w     		   : word count (mandatory, must be positive)<br/>
+-l    		   : word length (mandatory, must be positive)<br/>
+-d                : min distance between word (mandatory, must be positive and smaller than word length)<br/>
+-h                : This help menu<br/>
+<br/>
+-w should be smaller than ceil(((number of letters)^(word length))/((number of letters)^0 + ... + (number of letters)^distance))<br/>
 
--w should be smaller than ceil(((number of letters)^(word length))/((number of letters)^0 + ... + (number of letters)^distance))
-##Correct usages :
-java -jar programming_exercise.jar -w 10 -l 5 -d 3
+## Correct usages :
+java -jar programming_exercise.jar -w 10 -l 5 -d 3<br/>
 
 Distance matrix can be found under the following path : /<jar_path>/distance_matrix.tsv
 
 Content of distance_matrix.tsv :
 
-     	GCAGG	GCTCC	GCCTA	CAAGT	CATCG	CACAC	CTAGA	CTTCT	CTCAG	CGATC	
-GCAGG	  -  	  3  	  3  	  3  	  4  	  5  	  3  	  5  	  4  	  4  	
-GCTCC	  3  	  -  	  3  	  5  	  3  	  4  	  5  	  3  	  5  	  4  	
-GCCTA	  3  	  3  	  -  	  5  	  5  	  4  	  4  	  5  	  4  	  4  	
-CAAGT	  3  	  5  	  5  	  -  	  3  	  3  	  2  	  3  	  4  	  3  	
-CATCG	  4  	  3  	  5  	  3  	  -  	  3  	  4  	  2  	  3  	  4  	
-CACAC	  5  	  4  	  4  	  3  	  3  	  -  	  4  	  4  	  2  	  3  	
-CTAGA	  3  	  5  	  4  	  2  	  4  	  4  	  -  	  3  	  3  	  3  	
-CTTCT	  5  	  3  	  5  	  3  	  2  	  4  	  3  	  -  	  3  	  4  	
-CTCAG	  4  	  5  	  4  	  4  	  3  	  2  	  3  	  3  	  -  	  4  	
-CGATC	  4  	  4  	  4  	  3  	  4  	  3  	  3  	  4  	  4  	  - 
+![image](https://user-images.githubusercontent.com/4020240/117873153-c2a3f000-b29f-11eb-98d6-5a8c15c114fa.png)
 
 java -jar programming_exercise.jar -w 96 -l 6 -d 3
 
-##Wrong usages : 
+## Wrong usages : 
 
-java -jar programming_exercise.jar -w 10 -l 0 -d 0
-Given parameters are not suitable for generate unique words!
-Entered parameters : -w 10 -l 0 -d 0 
-Please use for more help -h
+java -jar programming_exercise.jar -w 10 -l 0 -d 0<br/>
+Given parameters are not suitable for generate unique words!<br/>
+Entered parameters : -w 10 -l 0 -d 0 <br/>
+Please use for more help -h<br/>
 
-java -jar programming_exercise.jar -w 10 -l 2
+java -jar programming_exercise.jar -w 10 -l 2<br/>
+Missing mandatory parameter(s)!<br/>
+Entered parameters : -w 10 -l 0 <br/>
+Please use for more help -h<br/>
 
-Missing mandatory parameter(s)!
-Entered parameters : -w 10 -l 0 
-Please use for more help -h
+java -jar programming_exercise.jar -w 10 -l 10 -d 2 -x 5<br/>
+This command(s) are not found : -x<br/>
+Entered parameters : -w 10 -l 10 -d 2 -x 5 <br/>
+Please use for more help -h<br/>
 
-java -jar programming_exercise.jar -w 10 -l 10 -d 2 -x 5
-
-This command(s) are not found : -x
-Entered parameters : -w 10 -l 10 -d 2 -x 5 
-Please use for more help -h
-
-java -jar programming_exercise.jar -w 10 -l 10 -d 2aaa
-Given parameters are not suitable for generate unique words!
-Entered parameters : -w 10 -l 10 -d 2aaa 
-Please use for more help -h
+java -jar programming_exercise.jar -w 10 -l 10 -d 2aaa<br/>
+Given parameters are not suitable for generate unique words!<br/>
+Entered parameters : -w 10 -l 10 -d 2aaa <br/>
+Please use for more help -h<br/>
