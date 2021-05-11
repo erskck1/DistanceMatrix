@@ -24,22 +24,28 @@ public class ParameterValueValidator extends Validator {
     protected void execute() {
         Map<String, String> parametersAsMap = CommandsUtil.getParametersAsMap(args);
 
-        int wordCount = Integer.valueOf(parametersAsMap.get(Commands.WORD_COUNT.getParameter()));
-        int wordLength = Integer.valueOf(parametersAsMap.get(Commands.WORD_LENGTH.getParameter()));
-        int distance = Integer.valueOf(parametersAsMap.get(Commands.DISTANCE.getParameter()));
+        try {
+            int wordCount = Integer.valueOf(parametersAsMap.get(Commands.WORD_COUNT.getParameter()));
+            int wordLength = Integer.valueOf(parametersAsMap.get(Commands.WORD_LENGTH.getParameter()));
+            int distance = Integer.valueOf(parametersAsMap.get(Commands.DISTANCE.getParameter()));
 
-        if (wordCount <= 0 || wordLength <= 0 || distance <= 0) {
-            success = false;
-            return;
-        }
+            if (wordCount <= 0 || wordLength <= 0 || distance <= 0) {
+                success = false;
+                return;
+            }
 
-        if (distance > wordLength) {
-            success = false;
-            return;
-        }
+            if (distance > wordLength) {
+                success = false;
+                return;
+            }
 
-        int numberOfWordsWithDistance = Helper.calculateNumberOfWordCombinationsBy(wordLength, Alphabet.count(), distance);
-        if (wordCount > numberOfWordsWithDistance) {
+            int numberOfWordsWithDistance = Helper.calculateNumberOfWordCombinationsBy(wordLength, Alphabet.count(), distance);
+            if (wordCount > numberOfWordsWithDistance) {
+                success = false;
+                return;
+            }
+
+        } catch (NumberFormatException n) {
             success = false;
             return;
         }

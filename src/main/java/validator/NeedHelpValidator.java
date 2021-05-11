@@ -29,6 +29,7 @@ public class NeedHelpValidator extends Validator {
         System.out.println("-l    		 : " + Commands.WORD_LENGTH.getDescription());
         System.out.println("-d           : " + Commands.DISTANCE.getDescription());
         System.out.println("-h           : " + Commands.HELP.getDescription());
+        System.out.println("\n-w should be smaller than ceil(((number of letters)^(word length))/((number of letters)^0 + ... + (number of letters)^distance))\n");
     }
 
     @Override
