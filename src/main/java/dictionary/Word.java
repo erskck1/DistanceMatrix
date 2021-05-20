@@ -19,6 +19,12 @@ public class Word {
         return letters.size();
     }
 
+    public void concat(Word word) {
+        for (Alphabet a : word.letters) {
+            this.append(a);
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder word = new StringBuilder();

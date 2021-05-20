@@ -25,14 +25,14 @@ public class SimulatorTest {
 
     @Test
     public void areWordsUnique() {
-        List<Word> words = simulator.createUniqueWordsBy(820, 6, 2);
-        assertTrue(words.size() == 820);
+        List<Word> words = simulator.createUniqueWordsBy(96, 6, 3);
+        assertTrue(words.size() == 96);
         for (Word word1 : words) {
             for (Word word2 : words) {
                 if (word1 == word2) {
                     continue;
                 }
-                assertTrue(Helper.calculateDistanceBetween(word1.toString(), word2.toString()) >= 2);
+                assertTrue(Helper.calculateDistanceBetween(word1.toString(), word2.toString()) >= 3);
             }
         }
     }

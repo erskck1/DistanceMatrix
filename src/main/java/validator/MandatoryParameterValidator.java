@@ -44,7 +44,7 @@ public class MandatoryParameterValidator extends Validator {
 
     @Override
     protected Validator getNext() {
-        return new ParameterValueValidator(args);
+        return null;
     }
 
 }
