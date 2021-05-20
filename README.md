@@ -12,7 +12,6 @@ Usage of the program<br/>
 -d                : min distance between word (mandatory, must be positive and smaller than word length)<br/>
 -h                : This help menu<br/>
 <br/>
--w should be smaller than ceil(((number of letters)^(word length))/((number of letters)^0 + ... + (number of letters)^distance))<br/>
 
 ## Correct usages :
 java -jar programming_exercise.jar -w 10 -l 5 -d 3<br/>
