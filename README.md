@@ -1,5 +1,7 @@
 # Programming Excercise
 
+To generate 96 words of length with at least 3 distances use the following command : java -jar programming_exercise.jar -w 96 -l 6 -d 3
+
 Java Version : 1.8
 
 java -jar programming_exercise.jar -h
@@ -21,7 +23,6 @@ Content of distance_matrix.tsv :
 
 ![image](https://user-images.githubusercontent.com/4020240/117873153-c2a3f000-b29f-11eb-98d6-5a8c15c114fa.png)
 
-java -jar programming_exercise.jar -w 96 -l 6 -d 3
 
 ## Wrong usages : 
 
