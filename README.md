@@ -1,4 +1,4 @@
-# Programming Excercise
+# DistanceMatrix
 
 To generate 96 words of length 6 with at least 3 distances use the following command : java -jar programming_exercise.jar -w 96 -l 6 -d 3
 
